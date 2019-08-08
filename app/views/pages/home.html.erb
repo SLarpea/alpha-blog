@@ -12,7 +12,9 @@
 <div class="center jumbotron">
   <div class="alpha">
     <h1>ALPHA BLOG</h1>
-    <%= link_to "Sign up", "#", class: "btn btn-primary btn-lg btn-xlarge" %>
+    <% if !logged_in? %>
+      <%= link_to "Sign up", signup_path , class: "btn btn-primary btn-lg btn-xlarge" %>
+    <% end %>
   </div>
 </div>
 
@@ -20,3 +22,4 @@
 
 </body>
 </html>
+
