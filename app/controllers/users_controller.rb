@@ -1,5 +1,8 @@
 
 class UsersController < ApplicationController
+
+  #update in issue number 2
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:destroy]
@@ -69,4 +72,5 @@ class UsersController < ApplicationController
         redirect_to articles_path
       end
     end
+
 end
