@@ -1,7 +1,7 @@
 
 class UsersController < ApplicationController
 
-  #update in issue number 2
+  #update in issue number 2 please check ..
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
