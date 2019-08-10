@@ -1,14 +1,28 @@
-Article.create("title"=>"This is a new article again", "description"=>"This is a description again", "user_id"=>9)
-Article.create("title"=>"Another article edited", "description"=>"my favourite anime", "user_id"=>9)
-Article.create("title"=>"Tonari no Kaibutsu-kun", "description"=>"My Little Monster", "user_id"=>nil)
-Article.create("title"=>"Kaichou wa Maid-sama", "description"=>"The President is a Maid", "user_id"=>nil)
-Article.create("title"=>"Another article for testing", "description"=>"With bootstrap", "user_id"=>nil)
-Article.create("title"=>"Edited", "description"=>"Updating this article again and again.", "user_id"=>nil)
-Article.create("title"=>"Testing article for message alert", "description"=>"Hope that I see a green tag ", "user_id"=>nil)
-Article.create("title"=>"Another article again and again and again", "description"=>"Description to my article.", "user_id"=>nil)
-Article.create("title"=>"This is an article", "description"=>"This is a decription", "user_id"=>2)
-Article.create("title"=>"Test article for user", "description"=>"Description of article for user", "user_id"=>2)
-User.create("username"=>"nold", "email"=>"nold@example.com", "password_digest"=>"$2a$12$fcaHEDCd1kKNtZl.YwTL9OFTANw0eCYqgHjxveqzmfVnhZT.uNu5K")
-User.create("username"=>"ArnoldS", "email"=>"arnolds@example.com", "password_digest"=>"$2a$12$g2nCNict3iur5lAXl9N4J.9VZmR50RTg9kTDw6pEEWBh3H3A0mI2i")
-User.create("username"=>"Joey", "email"=>"joey@example.com", "password_digest"=>"$2a$12$sIakvKt6rhbBGKXwmu0Ch.CgBLhhd3UoZHLjQK29e5xNGD/JHm39y")
-User.create("username"=>"mashrur", "email"=>"mashrur.hossain@gmail.com", "password_digest"=>"$2a$12$86PYwv65rFZ4mDTJitI5YeOBFRk5hQyXi8Org0VriM9Th12jvWaue")
+
+7.times do
+  username = Faker::Name.first_name
+  User.create([{
+       username: username,
+       email: Faker::Internet.safe_email(name: username),
+       password: "password"
+       }])
+end
+
+10.times do
+  Article.create([{
+      title: Faker::TvShows::GameOfThrones.character,
+      description: Faker::TvShows::GameOfThrones.quote,
+      user_id: Faker::Number.within(range: 1..7)
+      }])
+end
+
+8.times do
+  Category.create([{
+      name: Faker::Book.genre
+      }])
+end
+
+user = User.find(rand(1..7))
+user.toggle!(:admin)
+user.save
+puts "admin #{user.email}"
